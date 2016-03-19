@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import numpy as np
 import itertools
+import webbrowser
 
 class DirGet(object):
     '''Run essentially the whole project in this one class'''
@@ -14,7 +15,7 @@ class DirGet(object):
         3. Select the filters that apply to you and return waypoints that meet those criteria
         4. Find all the routes through those waypoints
         5. Pick the routes that end up closest to the distance that you want
-        6. Print a bunch of good information
+        6. Print a bunch of good information about the route and the waypoints
         7. Figure out someway to communicate this to a design team and display some html
         8. Learn swift'''
         self.start = 'https://maps.googleapis.com/maps/api/directions/json?'
@@ -84,6 +85,7 @@ class DirGet(object):
         print 'Points Visited:'
         for row in waypoints[mask].iterrows():
             print row.name
+            webbrowser.open(row['picture url'])
 
 if __name__ == '__main__':
     getter = DirGet()
@@ -98,8 +100,17 @@ if __name__ == '__main__':
     # These are the routes and associated waypoint combinations sorted by how closely they match the distance you want
     routes, points = getter.check_routes(6, response_list, points)
     # Print it out
-    # for i in xrange(5):
-    #     getter.return_info(routes[i], points[i], waypoints)
+    for i in xrange(5):
+        getter.return_info(routes[i], points[i], waypoints)
 
-    with open('sample_json.txt', 'wa') as f:
-            json.dump([route.json() for route in routes], f)
+    # Sample Output:
+    # Distance:  5.8 mi
+    # Time:  1 hour 58 mins
+    # Points Visited:
+    # Ocean Beach
+    # Mission Dolores
+    # (Image opens in your browser)
+    #
+
+    # with open('sample_json.txt', 'wa') as f:
+    #         json.dump([route.json() for route in routes], f)
