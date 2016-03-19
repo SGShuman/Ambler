@@ -90,8 +90,8 @@ class DirGet(object):
 if __name__ == '__main__':
     getter = DirGet()
     # Sample of our curated content
-    df = pd.read_csv('sample_waypoints.csv')
-    waypoints = df[0:8].copy()
+    df = pd.read_csv('Ambler_Database.csv')
+    waypoints = df[0:20].copy()
     filters = ['beauty', 'art', 'vista']
     # These are the points that most algin with our filters
     points = getter.get_top_points(waypoints, filters)
