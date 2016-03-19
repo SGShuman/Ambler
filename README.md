@@ -5,7 +5,7 @@ First select from a set of filters to determine which sights you want to visit. 
 
 First enter in your start and end location (if end!=start), then enter in your desired distance for your hike.  Finally, choose the filters on the locations that you want to visit and we will generate five routes for you to pick from.  All of them will about the right distance and hit different spots in the city that you are probably interested in.
 
-Check out our <a href="https://projects.invisionapp.com/share/VN6KEYLBR#/screens">prototype! </a>
+Check out our <a href="https://projects.invisionapp.com/share/VN6KEYLBR#/screens">prototype</a> and <a href="http://sgshuman.github.io/Ambler/map.html">sample route </a>!
 
 ## Team Members
 Stacey
