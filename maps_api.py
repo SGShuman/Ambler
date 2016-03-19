@@ -1,5 +1,6 @@
 import requests
 import os
+import json
 
 class DirGet(object):
     '''Get directions between two SF Locations'''
@@ -22,4 +23,5 @@ class DirGet(object):
 if __name__ == '__main__':
     getter = DirGet()
     response = getter.get_dirs('466ClementinaSt', 'FortPointOverlook')
-    print response.json()
+    with open('samp_jsons.txt', 'w') as f:
+        json.dump(response.json(), f)
