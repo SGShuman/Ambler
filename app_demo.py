@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import itertools
 import webbrowser
+import time
 
 class DirGet(object):
     '''Run essentially the whole project in this one class'''
@@ -43,7 +44,7 @@ class DirGet(object):
                     score += row[col]
             scores.append(score)
         indices = np.argsort(scores)[::-1]
-        points = waypoints[indices]['address']
+        points = waypoints['address'][indices]
         return np.array(points)
 
     def get_all_routes(self, origin, points, end=None, min_points=2, max_points=10):
@@ -84,8 +85,9 @@ class DirGet(object):
         mask = waypoints['address'].apply(lambda x: x in points)
         print 'Points Visited:'
         for row in waypoints[mask].iterrows():
-            print row.name
-            webbrowser.open(row['picture url'])
+            print row[1].name
+            time.sleep(10)
+            webbrowser.open(row[1]['picture url'])
 
 if __name__ == '__main__':
     getter = DirGet()
@@ -100,8 +102,7 @@ if __name__ == '__main__':
     # These are the routes and associated waypoint combinations sorted by how closely they match the distance you want
     routes, points = getter.check_routes(6, response_list, points)
     # Print it out
-    for i in xrange(5):
-        getter.return_info(routes[i], points[i], waypoints)
+    getter.return_info(routes[0], points[0], waypoints)
 
     # Sample Output:
     # Distance:  5.8 mi
